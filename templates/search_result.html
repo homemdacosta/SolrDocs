@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <button class="btn btn-primary" onclick="goBack()">Voltar</button>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <p>Termo buscado <b>{{search_keyword}}</b>
+            <br>
+            {{ result_size }} documents found.
+        </div>    
+            <ul>
+                {% for result in results %}
+                    {% if 'resourcename' in result %}
+                        <li>
+                            <a href="file:///{{ result.resourcename }}"> {{ result.resourcename }} </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        
+    </main>
+{% endblock %}
